@@ -13,19 +13,21 @@ test.describe("my-test", () => {
 
     await page.getByRole("checkbox", { name: "Toggle Todo" }).check();
 
-    await expect(page.locator("body")).toMatchAriaSnapshot(`
-      - text: This is just a demo of TodoMVC for testing, not the
-      - link "real TodoMVC app."
-      - heading "todos" [level=1]
-      - textbox "What needs to be done?"
-      - contentinfo:
-        - paragraph: Double-click to edit a TODO
-        - paragraph:
-          - text: Created by
-          - link "Remo H. Jansen"
-        - paragraph:
-          - text: Part of
-          - link "TodoMVC"
-      `);
+    await page.goto("https://demo.playwright.dev/todomvc/#/");
+    await expect(page.locator("html")).toMatchAriaSnapshot(`
+        - document:
+          - text: This is just a demo of TodoMVC for testing, not the
+          - link "real TodoMVC app."
+          - heading "todos" [level=1]
+          - textbox "What needs to be done?"
+          - contentinfo:
+            - paragraph: Double-click to edit a todo
+            - paragraph:
+              - text: Created by
+              - link "Remo H. Jansen"
+            - paragraph:
+              - text: Part of
+              - link "TodoMVC"
+        `);
   });
 });

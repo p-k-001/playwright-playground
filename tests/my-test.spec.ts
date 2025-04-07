@@ -6,5 +6,6 @@ test.describe("my-test", () => {
     // await expect(page).toHaveTitle("React • TodoMVC");
 
     await expect(page).toHaveTitle(/.*TodoMVC$/);
+    await expect(page.getByText("todos")).toHaveRole("heading");
   });
 });

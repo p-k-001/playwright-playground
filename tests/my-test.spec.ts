@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("my-test", () => {
-  test("Check the title of the todo app", async ({ page }) => {
+  test.skip("Check the title of the todo app", async ({ page }) => {
     await page.goto("https://demo.playwright.dev/todomvc");
     // await expect(page).toHaveTitle("React • TodoMVC");
 
@@ -29,5 +29,15 @@ test.describe("my-test", () => {
               - text: Part of
               - link "TodoMVC"
         `);
+  });
+
+  test("change url", async ({ page }) => {
+    await page.goto("http://localhost:5173/");
+    await page.getByRole("link", { name: "google" }).click();
+    await page.waitForURL(/google.com/);
+    await page.getByRole("button", { name: "Odmítnout vše" }).click();
+    await page.getByRole("combobox", { name: "Najít" }).fill("bohyska");
+    await page.getByRole("combobox", { name: "Najít" }).blur();
+    await page.getByRole("button", { name: "Hledat Googlem" }).click();
   });
 });

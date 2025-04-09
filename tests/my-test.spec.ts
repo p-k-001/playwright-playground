@@ -13,6 +13,8 @@ test.describe("my-test", () => {
 
     await page.getByRole("checkbox", { name: "Toggle Todo" }).check();
 
+    await expect(page).toHaveScreenshot("home.png");
+
     await page.goto("https://demo.playwright.dev/todomvc/#/");
     await expect(page.locator("html")).toMatchAriaSnapshot(`
         - document:
